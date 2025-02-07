@@ -35,5 +35,19 @@ public class Main {
         daysList.add(day2Info);
         championsMap = report.getChampions(daysList);
         System.out.println("champions - userIds: = steps: " + championsMap);
+
+        System.out.println("-------------------------------------------------------");
+        System.out.println("# Third case #");
+        daysList = new ArrayList<>();
+        day1Info = new HashMap<>();
+        day1Info.put(1L, 1000);
+
+        day2Info.put(2L, 6000);
+        day2Info.put(1L, 2000);
+
+        daysList.add(day1Info);
+        daysList.add(day2Info);
+        championsMap = report.getChampions(daysList);
+        System.out.println("champions - userIds: = steps: " + championsMap);
     }
 }
