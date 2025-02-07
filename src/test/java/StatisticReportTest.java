@@ -1,51 +1,51 @@
 import org.example.StatisticReport;
-import org.example.User;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
 
-import static org.example.Constants.*;
 
 
 public class StatisticReportTest {
     StatisticReport report = new StatisticReport();
-    List<HashMap<Long, Integer>> list = new ArrayList<>();
-    List<Set<User>> usersInDays = new ArrayList<>();
+    List<HashMap<Long, Integer>> daysList = new ArrayList<>();
+    HashMap<Long, Integer> day1Info = new HashMap<>();;
+    HashMap<Long, Integer> day2Info = new HashMap<>();
+
+    HashMap<Long, Integer> resultMapFirstCase = new HashMap<>(Map.of(2L, 2500));
+    HashMap<Long, Integer> resultMapSecondCase = new HashMap<>(Map.of(1L, 5500, 2L, 5500));
 
     @AfterEach
-     void reset(){
-        list.clear();
-        usersInDays.clear();
+    void reset(){
+        day1Info.clear();
+        day2Info.clear();
+        daysList.clear();
+    }
+    @Test
+    void getChampionsTestFirstCase() {
+        day1Info.put(1L, 1000);
+        day1Info.put(2L, 1500);
+
+        day2Info.put(2L, 1000);
+
+        daysList.add(day1Info);
+        daysList.add(day2Info);
+        HashMap<Long, Integer> actual = report.getChampions(daysList);
+        Assertions.assertEquals(resultMapFirstCase, actual);
     }
 
     @Test
-     void getChampionVar1TestFirstCase(){
-        list.add(USER_MAP1);
-        list.add(USER_MAP2);
-        Optional<Map.Entry<Long, Integer>> actual = report.getChampionVar1(list);
-        Assertions.assertEquals(CHAMPION_ENTRY_FIRST_CASE, actual);
-    }
-    @Test
-     void getChampionVar1TestSecondCase(){
-        list.add(USER_MAP3);
-        list.add(USER_MAP4);
-        Optional<Map.Entry<Long, Integer>> actual = report.getChampionVar1(list);
-        Assertions.assertEquals(CHAMPION_ENTRY_SECOND_CASE, actual);
-    }
+    void getChampionsTestSecondCase() {
+        day1Info.put(1L, 2000);
+        day1Info.put(2L, 1500);
 
-    @Test
-    void getChampionVar2TestFirstCase(){
-        usersInDays.add(USERS_SET_DAY1_CASE_1);
-        usersInDays.add(USERS_SET_DAY2_CASE_1);
-        Optional<User> actual = report.getChampionVar2(usersInDays);
-        Assertions.assertEquals(CHAMPION_USER_FIRST_CASE, actual);
-    }
-@Test
-    void getChampionVar2TestSecondCase(){
-        usersInDays.add(USERS_SET_DAY1_CASE_2);
-        usersInDays.add(USERS_SET_DAY2_CASE_2);
-        Optional<User> actual = report.getChampionVar2(usersInDays);
-        Assertions.assertEquals(CHAMPION_USER_SECOND_CASE, actual);
+        day2Info.put(2L, 4000);
+        day2Info.put(1L, 3500);
+
+        daysList.add(day1Info);
+        daysList.add(day2Info);
+
+        HashMap<Long, Integer> actual = report.getChampions(daysList);
+        Assertions.assertEquals(resultMapSecondCase, actual);
     }
 
 }

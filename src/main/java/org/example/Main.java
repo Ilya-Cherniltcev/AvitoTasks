@@ -1,27 +1,39 @@
 package org.example;
 
 import java.util.*;
-import org.example.Constants.*;
 
-import static org.example.Constants.*;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("# Task 1 #");
+        System.out.println("# First case #");
         StatisticReport report = new StatisticReport();
-        List<HashMap<Long, Integer>> list = new ArrayList<>();
-        list.add(USER_MAP3);
-        list.add(USER_MAP4);
-        Optional<Map.Entry<Long, Integer>> championId = report.getChampionVar1(list);
-        System.out.printf("champions = { userIds: %d, steps: %d }", championId.orElseThrow().getKey(),
-                championId.orElseThrow().getValue());
-        System.out.println();
-        System.out.println();
-        System.out.println("------------ User variant 2 ---------");
+        List<HashMap<Long, Integer>> daysList = new ArrayList<>();
+        HashMap<Long, Integer> day1Info = new HashMap<>();
+        day1Info.put(1L, 1000);
+        day1Info.put(2L, 1500);
+        HashMap<Long, Integer> day2Info = new HashMap<>();
+        day2Info.put(2L, 1000);
 
-//        List<Set<User>> days = new ArrayList<>(List.of(USERS_SET_DAY1_CASE_2, USERS_SET_DAY2_CASE_2));
-        List<Set<User>> days = new ArrayList<>(List.of(USERS_SET_DAY1_CASE_1, USERS_SET_DAY2_CASE_1));
-        Optional<User> championUserId = report.getChampionVar2(days);
-        System.out.println("champions = " + report.getJson(championUserId.orElseThrow()));
+        daysList.add(day1Info);
+        daysList.add(day2Info);
+        HashMap<Long, Integer> championsMap = report.getChampions(daysList);
+        System.out.println("champions - userIds: = steps: " + championsMap);
+
+        System.out.println("-------------------------------------------------------");
+        System.out.println("# Second case #");
+        daysList = new ArrayList<>();
+        day1Info = new HashMap<>();
+        day1Info.put(1L, 2000);
+        day1Info.put(2L, 1500);
+
+        day2Info = new HashMap<>();
+        day2Info.put(2L, 4000);
+        day2Info.put(1L, 3500);
+
+        daysList.add(day1Info);
+        daysList.add(day2Info);
+        championsMap = report.getChampions(daysList);
+        System.out.println("champions - userIds: = steps: " + championsMap);
     }
 }
