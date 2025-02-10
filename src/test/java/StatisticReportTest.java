@@ -65,4 +65,21 @@ public class StatisticReportTest {
         HashMap<Long, Integer> actual = report.getChampions(daysList);
         Assertions.assertEquals(resultMapThirdCase, actual);
     }
+
+
+    @Test
+    void getChampionsTest4Case() {
+        day1Info.put(1L, 10000);
+        day1Info.put(2L, 7000);
+
+        day2Info.put(2L, 4000);
+        day2Info.put(1L, 3500);
+
+        daysList.add(day1Info);
+        daysList.add(day2Info);
+
+        HashMap<Long, Integer> actual = report.getChampions(daysList);
+        Assertions.assertEquals(resultMapSecondCase, actual);
+    }
+
 }
