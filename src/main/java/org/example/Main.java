@@ -64,6 +64,7 @@ public class Main {
         // logics
         int res = 0;
         int counter = 0;
+        // -------------------------------------     O (n)
         for (int eachBuyerNeed : buyerNeeds) {
             int dissatisfaction = 0;
             if (!goods.contains(eachBuyerNeed)) {
