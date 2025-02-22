@@ -5,7 +5,6 @@ import org.junit.jupiter.api.*;
 import java.util.*;
 
 
-
 public class StatisticReportTest {
     StatisticReport report = new StatisticReport();
 
@@ -70,25 +69,26 @@ public class StatisticReportTest {
     }
 
     @Test
-    void whatAboutDissatisfaction_Test_case1(){
-        Set<Integer> goods = new TreeSet<>(Set.of(2,3,7,10,14,19,20));
+    void whatAboutDissatisfaction_Test_case1() {
+        Set<Integer> goods = new TreeSet<>(Set.of(2, 3, 7, 10, 14, 19, 20));
         List<Integer> buyerNeeds = new ArrayList<>(List.of(5, 6, 13, 15, 17));
         int expected = 7;
         int actual = task2.whatAboutDissatisfaction(goods, buyerNeeds);
         Assertions.assertEquals(expected, actual);
     }
-   @Test
-    void whatAboutDissatisfaction_Test_case2(){
-        Set<Integer> goods = new TreeSet<>(Set.of(0,5,10,22,50,51,53));
+
+    @Test
+    void whatAboutDissatisfaction_Test_case2() {
+        Set<Integer> goods = new TreeSet<>(Set.of(0, 5, 10, 22, 50, 51, 53));
         List<Integer> buyerNeeds = new ArrayList<>(List.of(3, 10, 15, 35, 40, 45));
         int expected = 35;
         int actual = task2.whatAboutDissatisfaction(goods, buyerNeeds);
         Assertions.assertEquals(expected, actual);
     }
 
-  @Test
-    void whatAboutDissatisfaction_Test_case3_if_Out_Range(){
-        Set<Integer> goods = new TreeSet<>(Set.of(13,15,50,77,100, 122, 150, 200));
+    @Test
+    void whatAboutDissatisfaction_Test_case3_if_Out_Range() {
+        Set<Integer> goods = new TreeSet<>(Set.of(13, 15, 50, 77, 100, 122, 150, 200));
         List<Integer> buyerNeeds = new ArrayList<>(List.of(1, 99, 118, 226, 166, 255));
         int expected = 114;
         int actual = task2.whatAboutDissatisfaction(goods, buyerNeeds);
