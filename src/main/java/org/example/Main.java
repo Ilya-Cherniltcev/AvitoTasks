@@ -56,55 +56,14 @@ public class Main {
         System.out.println("================================");
 
         //  make set of goods
-        Set<Integer> goods = new TreeSet<>(Set.of(8, 3, 5));
+        Set<Integer> goods = new TreeSet<>(Set.of(13,15,50,77,100, 122, 150, 200));
+        List<Integer> buyerNeeds = new ArrayList<>(List.of(1, 99, 118, 226, 166, 255));
         List<Integer> goodsList = new ArrayList<>(goods);
         List<Integer> buyersDissatisfaction = new ArrayList<>();
         // make needs of buyers
-        List<Integer> buyerNeeds = new ArrayList<>(List.of(5, 6));
         // logics
-        int res = 0;
-        int counter = 0;
-        for (int eachBuyerNeed : buyerNeeds) {
-            int dissatisfaction = 0;
-            if (!goods.contains(eachBuyerNeed)) {
-                int minElement = goodsList.get(0);
-                int maxElement = goodsList.get(goodsList.size() - 1);
-                // case 1: minElement < eachBuyerNeed < maxElement
-                if (eachBuyerNeed > minElement && eachBuyerNeed < maxElement) {
-                    int middle = goodsList.size() / 2;
-                    if (eachBuyerNeed - goodsList.get(middle) > 1) {
-                        if ((middle - 1) >= 0 && (middle + 1) <= goodsList.size() - 1) {
-                            // leftHalf
-                            if (eachBuyerNeed - goodsList.get(middle - 1) < goodsList.get(middle + 1) - eachBuyerNeed) {
-                                dissatisfaction = eachBuyerNeed - goodsList.get(middle - 1);
-                            } else {
-                                // rightHalf
-                                dissatisfaction = goodsList.get(middle + 1) - eachBuyerNeed;
-                            }
-                        }
-                    } else dissatisfaction = 1;
-                }
-                // case 2: eachBuyerNeed < minElement
-                if (eachBuyerNeed < minElement) {
-                    dissatisfaction = minElement - eachBuyerNeed;
-                }
-                // case 3: eachBuyerNeed > maxElement
-                if (eachBuyerNeed > maxElement) {
-                    dissatisfaction = eachBuyerNeed - maxElement;
-                }
-            }
-            buyersDissatisfaction.add(counter, dissatisfaction);
-            res += dissatisfaction;
-            counter++;
-        }
-        System.out.println("Товары " + goods);
-        System.out.println("Нужные покупателям товары " + buyerNeeds);
-        System.out.println("суммарная неудовлетворенность res = " + res);
-        for(int buyer = 0; buyer < buyersDissatisfaction.size(); buyer++){
-            System.out.printf("%d-й покупатель покупает товар %d и его неудовлетворенность = %d", buyer+1,
-                    buyerNeeds.get(buyer), buyersDissatisfaction.get(buyer));
-            System.out.println();
-        }
+        Task2 task2 = new Task2();
+        task2.whatAboutDissatisfaction(goods, buyerNeeds);
 
     }
 }

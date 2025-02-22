@@ -1,4 +1,5 @@
 import org.example.StatisticReport;
+import org.example.Task2;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
@@ -7,6 +8,8 @@ import java.util.*;
 
 public class StatisticReportTest {
     StatisticReport report = new StatisticReport();
+
+    Task2 task2 = new Task2();
     List<HashMap<Long, Integer>> daysList = new ArrayList<>();
     HashMap<Long, Integer> day1Info = new HashMap<>();
     ;
@@ -66,20 +69,31 @@ public class StatisticReportTest {
         Assertions.assertEquals(resultMapThirdCase, actual);
     }
 
-
     @Test
-    void getChampionsTest4Case() {
-        day1Info.put(1L, 10000);
-        day1Info.put(2L, 7000);
-
-        day2Info.put(2L, 4000);
-        day2Info.put(1L, 3500);
-
-        daysList.add(day1Info);
-        daysList.add(day2Info);
-
-        HashMap<Long, Integer> actual = report.getChampions(daysList);
-        Assertions.assertEquals(resultMapSecondCase, actual);
+    void whatAboutDissatisfaction_Test_case1(){
+        Set<Integer> goods = new TreeSet<>(Set.of(2,3,7,10,14,19,20));
+        List<Integer> buyerNeeds = new ArrayList<>(List.of(5, 6, 13, 15, 17));
+        int expected = 7;
+        int actual = task2.whatAboutDissatisfaction(goods, buyerNeeds);
+        Assertions.assertEquals(expected, actual);
     }
+   @Test
+    void whatAboutDissatisfaction_Test_case2(){
+        Set<Integer> goods = new TreeSet<>(Set.of(0,5,10,22,50,51,53));
+        List<Integer> buyerNeeds = new ArrayList<>(List.of(3, 10, 15, 35, 40, 45));
+        int expected = 35;
+        int actual = task2.whatAboutDissatisfaction(goods, buyerNeeds);
+        Assertions.assertEquals(expected, actual);
+    }
+
+  @Test
+    void whatAboutDissatisfaction_Test_case3_if_Out_Range(){
+        Set<Integer> goods = new TreeSet<>(Set.of(13,15,50,77,100, 122, 150, 200));
+        List<Integer> buyerNeeds = new ArrayList<>(List.of(1, 99, 118, 226, 166, 255));
+        int expected = 114;
+        int actual = task2.whatAboutDissatisfaction(goods, buyerNeeds);
+        Assertions.assertEquals(expected, actual);
+    }
+
 
 }
